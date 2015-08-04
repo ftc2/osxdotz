@@ -36,25 +36,3 @@ else
   echo "Removing $HOME/.oh-my-zsh/custom so that it can be symlinked later..."
   rm -rf "$HOME/.oh-my-zsh/custom"
 fi
-
-# if [[ ! -e "$HOME/.zshrc" ]]; then
-#   echo ""
-#   echo "$HOME/.zshrc not found."
-#   echo "Copying: Oh My Zsh template file ($HOME/.oh-my-zsh/templates/zshrc.zsh-template) to $HOME/.zshrc"
-#   cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
-# fi
-
-# echo ""
-# echo "Installing .zshrc..."
-# new_zshrc="$basedir/resources/.zshrc"
-# if [[ -e "$HOME/.zshrc" ]]; then
-#   echo "$HOME/.zshrc already exists. remove and run again."
-# else
-#   if [[ -e "$new_zshrc" ]]; then
-#     echo "Copying: $new_zshrc => $HOME/.zshrc"
-#     cp "$new_zshrc" "$HOME/.zshrc"
-#   else
-#     echo "Copying: Oh My Zsh template file ($HOME/.oh-my-zsh/templates/zshrc.zsh-template) to $HOME/.zshrc"
-#     cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
-#   fi
-# fi

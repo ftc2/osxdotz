@@ -24,21 +24,6 @@ sleep 4
 export basedir=$(dirname "$(perl -MCwd=realpath -e "print realpath '$0'")")
 echo "osxdotz basedir: $basedir"
 
-## http://superuser.com/questions/789448/choosing-between-bashrc-profile-bash-profile-etc
-# echo ""
-# echo "Installing .bash_profile..."
-# new_profile="$basedir/resources/.bash_profile"
-# if [[ -e "$new_profile" ]]; then
-#   if [[ -e "$HOME/.bash_profile" ]]; then
-#     echo "$HOME/.bash_profile already exists. remove and run again."
-#   else
-#     echo "Copying: $new_profile => $HOME/.bash_profile"
-#     cp "$new_profile" "$HOME/.bash_profile"
-#   fi
-# else
-#   echo "$new_profile not found."
-# fi
-
 ## Do it
 scriptdir="$basedir/scripts"
 sh "$scriptdir/gitconfig.sh"
