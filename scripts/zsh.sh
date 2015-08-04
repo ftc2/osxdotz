@@ -28,11 +28,26 @@ chsh -s "$(command -v zsh)" || :
 
 echo ""
 echo "Installing Oh My Zsh..."
-if [ -d "$HOME/.oh-my-zsh" ]; then
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
   echo "You already have Oh My Zsh installed. You'll need to remove $HOME/.oh-my-zsh if you want to (re-)install"
 else
   git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
+  
+  zshrctemplate="$HOME/.oh-my-zsh/templates/zshrc.zsh-template"
   echo ""
-  echo "Removing $HOME/.oh-my-zsh/custom so that it can be symlinked later..."
-  rm -rf "$HOME/.oh-my-zsh/custom"
+  echo "Copying Oh My Zsh zshrc template to $HOME/.zshrc"
+  
+  if [[ -e "$HOME/.zshrc" ]]; then
+    zshrcbak="$HOME/zshrc.bak"
+    echo ""
+    echo "Existing $HOME/.zshrc found. Moving to $zshrcbak"
+    if [[ -e "$zshrcbak" ]]; then
+      echo "$zshrcbak already exists. Aborting."
+      exit 0
+    fi
+    mv "$HOME/.zshrc" "$zshrcbak"
+  fi
+  
+  cp "$zshrctemplate" "$HOME/.zshrc"
+
 fi
