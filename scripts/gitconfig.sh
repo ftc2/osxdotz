@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-## osxdotz: git config
+## osxdotz: interactively configure git
 set -eu
 
 ## if $basedir is unset
