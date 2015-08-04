@@ -1,0 +1,12 @@
+# http://duti.org/documentation.html
+# this is a duti config file to set default applications for file types/extensions
+#
+# blank lines and lines beginning with a '#' are ignored
+# note: if the file doesn't end with a blank line, duti might give a "line too long" error.
+# syntax:
+# bundle id		UTI/ext/MIME type	role
+
+com.barebones.textwrangler	nfo	all
+com.barebones.textwrangler	conf	all
+org.sabnzbd.team	nzb	all
+cx.c3.theunarchiver	rar	all

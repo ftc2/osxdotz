@@ -1,0 +1,34 @@
+# http://duti.org/documentation.html
+# this is a duti config file to set default applications for file types/extensions
+#
+# blank lines and lines beginning with a '#' are ignored
+# note: if the file doesn't end with a blank line, duti might give a "line too long" error.
+# syntax:
+# bundle id		UTI/ext/MIME type	role
+
+org.videolan.vlc	asf	all
+
+org.videolan.vlc	avi	all
+
+org.videolan.vlc	flv	all
+
+org.videolan.vlc	public.mpeg-4	all
+org.videolan.vlc	mp4	all
+org.videolan.vlc	m4v	all
+
+org.videolan.vlc	mkv	all
+
+org.videolan.vlc	mov	all
+
+org.videolan.vlc	mpg	all
+org.videolan.vlc	mpeg	all
+
+org.videolan.vlc	rm	all
+org.videolan.vlc	rmvb	all
+
+org.videolan.vlc	webm	all
+
+org.videolan.vlc	wmv	all
+
+org.videolan.vlc	public.3gpp		all
+org.videolan.vlc	3gp	all
