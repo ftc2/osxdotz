@@ -18,12 +18,12 @@ git_user_name='ftc2'
 git_user_email='ftc2@users.noreply.github.com'
 
 echo ""
-[[ $(dotz_prompt_yn "Do you want to configure git?" ) != 'yes' ]] && exit 0
+[[ $(dotz_prompt_yn "Do you want to configure git?") != 'yes' ]] && exit 0
 
 if [[ -e "$HOME/.gitconfig" ]]; then
   echo ""
   echo "$HOME/.gitconfig already exists."
-  [[ $(dotz_prompt_yn "Continue configuring git anyway?" ) != 'yes' ]] && exit 0
+  [[ $(dotz_prompt_yn "Continue configuring git anyway?") != 'yes' ]] && exit 0
 fi
 
 echo ""

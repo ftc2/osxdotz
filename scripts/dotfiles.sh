@@ -14,7 +14,7 @@ echo ""
 echo "osxdotz::dotfiles"
 
 echo ""
-[[ $(dotz_prompt_yn 'Do you want to clone dotfile repos?' ) != 'yes' ]] && exit 0
+[[ $(dotz_prompt_yn 'Do you want to clone dotfile repos?') != 'yes' ]] && exit 0
 
 dotz_install_if_missing vcsh
 dotz_install_if_missing myrepos
@@ -26,5 +26,12 @@ vcsh clone 'https://github.com/ftc2/mr.conf.git' 'mr'
 echo ""
 echo "Cloning/updating dotfile repos..."
 echo ""
+
+if [[ -e "$HOME/.zshrc" ]]; then
+  zshrcbak="$HOME/zshrc.bak"
+  echo ""
+  echo "Existing $HOME/.zshrc found. Moving to $zshrcbak"
+  mv "$HOME/.zshrc" "$zshrcbak"
+fi
 
 mr -d "$HOME" update
