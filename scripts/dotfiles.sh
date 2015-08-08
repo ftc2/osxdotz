@@ -25,4 +25,6 @@ vcsh clone 'https://github.com/ftc2/mr.conf.git' 'mr'
 
 echo ""
 echo "Cloning/updating dotfile repos..."
-mr update
+echo ""
+
+mr -d "$HOME" update
