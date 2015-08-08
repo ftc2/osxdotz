@@ -27,11 +27,11 @@ echo "osxdotz basedir: $basedir"
 ## Do it
 scriptdir="$basedir/scripts"
 sh "$scriptdir/gitconfig.sh"
-sh "$scriptdir/dotfiles.sh"
 sh "$scriptdir/homebrew.sh"
 sh "$scriptdir/homebrew_cask_apps.sh"
 sh "$scriptdir/filetype_associations.sh"
 sh "$scriptdir/zsh.sh"
+sh "$scriptdir/dotfiles.sh"
 sh "$scriptdir/defaults.sh"
 sh "$scriptdir/dock_icons.sh"
 
