@@ -18,14 +18,6 @@ git config:
   osxdotz/gitconfig.sh
     interactively configures git
 
-dotfiles etc.:
-  osxdotz/dotfiles.sh
-    dotfiles are managed using `vcsh` (https://github.com/RichiH/vcsh/) and
-      `myrepos` (http://myrepos.branchable.com/)
-    a vcsh repo containing a myrepos config is first cloned.
-    this myrepos config describes git and vcsh repos (each containing a set of dotfiles)
-      to be cloned using myrepos.
-
 homebrew:
   osxdotz/scripts/homebrew.sh
     specify which homebrew packages to install
@@ -42,6 +34,14 @@ filetype associations:
 zsh:
   osxdotz/scripts/zsh.sh
     update zsh via homebrew, make zsh the default shell, install Oh My Zsh
+
+dotfiles etc.:
+  osxdotz/dotfiles.sh
+    dotfiles are managed using `vcsh` (https://github.com/RichiH/vcsh/) and
+      `myrepos` (http://myrepos.branchable.com/)
+    a vcsh repo containing a myrepos config is first cloned.
+    this myrepos config describes git and vcsh repos (each containing a set of dotfiles)
+      to be cloned using myrepos.
 
 osx defaults:
   osxdotz/scripts/defaults.sh
