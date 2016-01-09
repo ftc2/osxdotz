@@ -62,13 +62,6 @@ echo "osxdotz::homebrew_cask_apps"
 ## Ensure homebrew is installed
 dotz_homebrew_install_update
 
-## Install homebrew-cask
-echo "Installing Homebrew-Cask..."
-brew install caskroom/cask/brew-cask
-
-## Tap alternative versions
-brew tap caskroom/versions
-
 ## Tap fonts
 brew tap caskroom/fonts
 
