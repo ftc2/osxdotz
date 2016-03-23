@@ -32,6 +32,7 @@ cask_apps=(
   adium
   linphone
   gpgtools
+  android-file-transfer
 )
 
 ## Quick Look plugins to install

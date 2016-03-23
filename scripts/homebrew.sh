@@ -21,6 +21,8 @@ brew_packages=(
   md5deep
   android-platform-tools
   imgur-screenshot
+  youtube-dl
+  qpdf
 )
 
 ## Untapped homebrew formulae to install
