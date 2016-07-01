@@ -32,3 +32,5 @@ org.videolan.vlc	wmv	all
 
 org.videolan.vlc	public.3gpp		all
 org.videolan.vlc	3gp	all
+
+org.videolan.vlc	divx	all
