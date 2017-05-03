@@ -26,13 +26,13 @@ cask_apps=(
   the-unarchiver
   keka
   spectacle
-  textwrangler
+  bbedit
   xtrafinder
-  asepsis
   adium
   linphone
-  gpgtools
+#  gpgtools
   android-file-transfer
+  android-platform-tools
 )
 
 ## Quick Look plugins to install
@@ -64,7 +64,7 @@ echo "osxdotz::homebrew_cask_apps"
 dotz_homebrew_install_update
 
 ## Tap fonts
-brew tap caskroom/fonts
+#brew tap caskroom/fonts
 
 ## Install apps
 if [ ! -z ${cask_apps+x} ]; then

@@ -19,7 +19,6 @@ brew_packages=(
   jhead
   exiftool
   md5deep
-  android-platform-tools
   imgur-screenshot
   youtube-dl
   qpdf
