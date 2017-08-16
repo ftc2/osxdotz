@@ -6,7 +6,7 @@
 # syntax:
 # bundle id		UTI/ext/MIME type	role
 
-com.barebones.textwrangler	nfo	all
-com.barebones.textwrangler	conf	all
+com.barebones.bbedit	nfo	all
+com.barebones.bbedit	conf	all
 org.sabnzbd.team	nzb	all
 cx.c3.theunarchiver	rar	all
