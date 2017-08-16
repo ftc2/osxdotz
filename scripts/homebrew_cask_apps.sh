@@ -22,12 +22,11 @@ cask_apps=(
   vlc
   handbrake
   sabnzbd
-  transmission
+  qbittorrent
   the-unarchiver
   keka
   spectacle
   bbedit
-  xtrafinder
   adium
   linphone
 #  gpgtools
@@ -37,14 +36,14 @@ cask_apps=(
 
 ## Quick Look plugins to install
 cask_qlplugins=(
-  betterzipql
-  qlimagesize     ## adds image size and resolution
-  qlvideo
-  qlmarkdown      ## .md files
-  qlcolorcode     ## source code files with syntax highlighting
-  quicklook-json
+#   betterzipql
+#   qlimagesize     ## adds image size and resolution
+#   qlvideo
+#   qlmarkdown      ## .md files
+#   qlcolorcode     ## source code files with syntax highlighting
+#   quicklook-json
 #   quicknfo        ## .nfo files, seems to not be working as of v1.2 ??
-  suspicious-package
+#   suspicious-package
 )
 
 ## Fonts to install
