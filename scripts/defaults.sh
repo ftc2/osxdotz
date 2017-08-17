@@ -2,8 +2,8 @@
 ## osxdotz: OS X configuration
 set -eu
 
-## Originally based on:
-## https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+## Based on:
+## https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 
 echo ""
 echo "osxdotz::defaults"
@@ -124,11 +124,12 @@ echo "Disk Utility: show advanced options incl. debug menu, hidden volumes, unmo
 defaults write com.apple.DiskUtility advanced-image-options -bool true
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 
-echo ""
-echo "Disabling 'recent files' in VLC (pr0n mode)"
-defaults delete org.videolan.vlc.LSSharedFileList RecentDocuments || :
-defaults write org.videolan.vlc.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
-defaults write org.videolan.vlc NSRecentDocumentsLimit 0
+## broken
+# echo ""
+# echo "Disabling 'recent files' in VLC (pr0n mode)"
+# defaults delete org.videolan.vlc.LSSharedFileList RecentDocuments || :
+# defaults write org.videolan.vlc.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
+# defaults write org.videolan.vlc NSRecentDocumentsLimit 0
 
 echo ""
 echo "Disabling Notification Center and removing the menu bar icon"
@@ -171,9 +172,14 @@ defaults_menubarshowbattpercent=${defaults_menubarshowbattpercent-"YES"}
 echo "Menubar: show battery percentage (YES or NO)? $defaults_menubarshowbattpercent"
 defaults write com.apple.menuextra.battery ShowPercent -string "$defaults_menubarshowbattpercent"
 
+## System Preferences → Displays → Show mirroring options in the menu bar when available
+## Forces "/System/Library/CoreServices/Menu Extras/Displays.menu"
+defaults write com.apple.airplay showInMenuBarIfPresent -bool false
+
 echo ""
 ## edit the following array to configure the menubar
 ##   by commenting/uncommenting and ordering its elements (top→bottom becomes left→right in the menubar)
+## macOS 10.12: ordering doesn't seem to work anymore, but you can cmd+click-and-drag items around manually
 if [ -z ${defaults_menubaritems+x} ]; then
   defaults_menubaritems=(
     "/System/Library/CoreServices/Menu Extras/AirPort.menu"
@@ -299,7 +305,7 @@ sudo defaults write /Library/Preferences/com.apple.iokit.AmbientLightSensor.plis
 
 echo ""
 echo "Enabling subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 echo ""
 echo "Enabling HiDPI display modes (requires restart)"
@@ -331,7 +337,7 @@ defaults write NSGlobalDomain com.apple.mouse.scaling 2
 echo ""
 echo "Use scroll gesture with the Ctrl (^) modifier key to zoom"
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # echo "Follow the keyboard focus while zoomed in"
 # defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
@@ -369,9 +375,9 @@ echo "Disabling annoying 'smart' quotes, dashes, and ellipses"
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
-echo ""
-echo "Increasing sound quality for Bluetooth headphones/headsets"
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# echo ""
+# echo "Increasing sound quality for Bluetooth headphones/headsets"
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 
 ###############################################################################
@@ -413,6 +419,7 @@ echo "New Finder windows show the home dir by default"
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
+## broken? https://origin-discussions-us.apple.com/thread/7250702
 echo ""
 echo "Allow text selection in Quick Look (i.e. when hitting space with a file selected in Finder)"
 defaults write com.apple.finder QLEnableTextSelection -bool true
@@ -420,6 +427,9 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 # echo ""
 # echo "Displaying full POSIX path as Finder window title"
 # defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
 
 echo ""
 echo "Disabling the Finder warning when changing a file extension"
@@ -438,8 +448,9 @@ echo "(Nlsv – List View, icnv – Icon View, clmv – Column View, Flwv - Flow
 defaults write com.apple.finder FXPreferredViewStyle -string "$defaults_finderviewmode"
 
 echo ""
-echo "Avoiding the creation of .DS_Store files on network volumes"
+echo "Avoiding the creation of .DS_Store files on network or USB volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 echo ""
 echo "Disabling cmd+P in Finder to avoid accidentally printing stuff"
@@ -572,46 +583,89 @@ defaults write com.apple.dashboard enabled-state -int 1
 ## Safari & WebKit (lol, as if anyone uses Safari)
 ###############################################################################
 
-echo ""
-echo "***** Safari & WebKit (lol, as if anyone uses Safari) *****"
+# Privacy: don’t send search queries to Apple
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
-echo ""
-echo "Hiding Safari's bookmarks bar by default"
-defaults write com.apple.Safari ShowFavoritesBar -bool false
+# Press Tab to highlight each item on a web page
+defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true
 
-echo ""
-echo "Hiding Safari's sidebar in Top Sites"
-defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+# Show the full URL in the address bar (note: this still hides the scheme)
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
-echo ""
-echo "Disabling Safari's thumbnail cache for History and Top Sites"
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+## Set Safari’s home page to `about:blank` for faster loading
+# defaults write com.apple.Safari HomePage -string "about:blank"
 
-echo ""
-echo "Enabling Safari's debug menu"
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# Prevent Safari from opening ‘safe’ files automatically after downloading
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 
-echo ""
-echo "Making Safari's search banners default to Contains instead of Starts With"
-defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
-
-echo ""
-echo "Removing useless icons from Safari's bookmarks bar"
-defaults write com.apple.Safari ProxiesInBookmarksBar "()"
-
-echo ""
-echo "Allow hitting the Backspace key to go to the previous page in history"
+# Allow hitting the Backspace key to go to the previous page in history
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true
 
-echo ""
-echo "Enabling the Develop menu and the Web Inspector in Safari"
+# Hide Safari’s bookmarks bar by default
+defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+# Hide Safari’s sidebar in Top Sites
+defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+
+# Disable Safari’s thumbnail cache for History and Top Sites
+defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+
+# Enable Safari’s debug menu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+# Make Safari’s search banners default to Contains instead of Starts With
+defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false
+
+# Remove useless icons from Safari’s bookmarks bar
+defaults write com.apple.Safari ProxiesInBookmarksBar "()"
+
+# Enable the Develop menu and the Web Inspector in Safari
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled" -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
-echo ""
-echo "Adding a context menu item for showing the Web Inspector in web views"
+# Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Enable continuous spellchecking
+defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true
+# Disable auto-correct
+# defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+
+# Disable AutoFill
+defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+defaults write com.apple.Safari AutoFillPasswords -bool false
+defaults write com.apple.Safari AutoFillCreditCardData -bool false
+defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Disable plug-ins
+# defaults write com.apple.Safari WebKitPluginsEnabled -bool false
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
+
+# Disable Java
+# defaults write com.apple.Safari WebKitJavaEnabled -bool false
+# defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+
+# Block pop-up windows
+defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+
+# Disable auto-playing video
+#defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false
+#defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false
+#defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+#defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 
 ###############################################################################
@@ -653,9 +707,16 @@ echo "***** Google Chrome *****"
 
 echo ""
 echo "Disable annoying backswipe (horizontal scroll history navigation) in Chrome"
+## trackpad
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
+## magic mouse
+defaults write com.google.Chrome AppleEnableMouseSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome.canary AppleEnableMouseSwipeNavigateWithScrolls -bool false
 
+## Expand the print dialog by default
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 ###############################################################################
 ## Kill affected applications
