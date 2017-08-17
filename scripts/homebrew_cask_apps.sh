@@ -36,14 +36,15 @@ cask_apps=(
 
 ## Quick Look plugins to install
 cask_qlplugins=(
-#   betterzipql
-#   qlimagesize     ## adds image size and resolution
-#   qlvideo
-#   qlmarkdown      ## .md files
-#   qlcolorcode     ## source code files with syntax highlighting
-#   quicklook-json
+  betterzip       ## betterzipql no longer maintained (betterzip includes qlplugin)
+  qlimagesize     ## adds image size and resolution
+  qlvideo
+  qlmarkdown      ## .md files
+  qlcolorcode     ## source code files with syntax highlighting
+  qlstephen       ## view plain text files without a file extension
+  quicklook-json
 #   quicknfo        ## .nfo files, seems to not be working as of v1.2 ??
-#   suspicious-package
+  suspicious-package
 )
 
 ## Fonts to install
