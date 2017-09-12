@@ -23,6 +23,8 @@ brew_packages=(
   youtube-dl
   qpdf
   platypus
+  gist
+  mas
 )
 
 ## Untapped homebrew formulae to install
