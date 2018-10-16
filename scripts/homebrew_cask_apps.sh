@@ -14,24 +14,40 @@ source "$basedir/lib/dotz_helpers.sh"
 
 ## Apps to install
 cask_apps=(
+  # browsers
   google-chrome
   firefox
-  virtualbox
-  virtualbox-extension-pack
+  tor-browser
+  # editors
+  bbedit
+  visual-studio-code
+  # system
+  iterm2
+  sloth
+  coconutbattery
   filezilla
-  vlc
-  handbrake
-  sabnzbd
-  qbittorrent
+  # compression/crypto
   the-unarchiver
   keka
-  spectacle
-  bbedit
-  adium
+  veracrypt
+  # multimedia
+  vlc
+  iina
+  soda-player
+  qbittorrent
+  handbrake
+  # chat
+  slack
+  discord
   linphone
-#  gpgtools
+  # vm
+  virtualbox
+  virtualbox-extension-pack
+  # misc
   android-file-transfer
   android-platform-tools
+  steam
+  google-earth-pro
 )
 
 ## Quick Look plugins to install

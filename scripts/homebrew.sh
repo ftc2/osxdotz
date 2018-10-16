@@ -11,20 +11,35 @@ fi
 source "$basedir/lib/dotz_helpers.sh"
 
 ## Homebrew packages to install
-## search here http://braumeister.org/
+## search here https://formulae.brew.sh/
 brew_packages=(
-  watch
+  # networking
   wget
+  mosh
+  nmap
+  iperf3
+  speedtest-cli
+  # dev
+  peco
   git
-  jhead
-  exiftool
-  md5deep
-  imgur-screenshot
-  youtube-dl
-  qpdf
-  platypus
   gist
+  cask-repair # vitorgalvao/tiny-scripts
+  # multimedia
+  exiftool
+  jhead
+  imagemagick
+  svgo
+  imgur-screenshot
+  qpdf
+  ffmpeg
+  youtube-dl
+  # misc/system
+  md5deep
+  watch
+  stress
+  platypus
   mas
+  cliclick
 )
 
 ## Untapped homebrew formulae to install
@@ -45,6 +60,7 @@ dotz_homebrew_install_update
 if [ ! -z ${brew_packages+x} ]; then
   echo ""
   echo "Installing homebrew packages..."
+  brew tap vitorgalvao/tiny-scripts
   brew install ${brew_packages[@]}
 fi
 
