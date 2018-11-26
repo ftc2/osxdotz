@@ -100,4 +100,4 @@ if [ ! -z ${cask_fonts+x} ]; then
   brew cask install ${cask_fonts[@]}
 fi
 
-brew cask cleanup
+brew cleanup
