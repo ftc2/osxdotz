@@ -11,7 +11,7 @@ dotz_homebrew_install() {
 dotz_homebrew_install_update() {
   dotz_homebrew_install
   brew update
-  brew upgrade --all
+  brew upgrade
   brew cleanup
 }
 
