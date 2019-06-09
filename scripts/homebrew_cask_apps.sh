@@ -25,7 +25,7 @@ cask_apps=(
   iterm2
   sloth
   coconutbattery
-  filezilla
+  # filezilla     ## removed due to malware/adware
   # compression/crypto
   the-unarchiver
   keka
