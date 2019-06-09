@@ -24,6 +24,7 @@ brew_packages=(
   git
   gist
   cask-repair # vitorgalvao/tiny-scripts
+  rbenv
   # multimedia
   exiftool
   jhead
