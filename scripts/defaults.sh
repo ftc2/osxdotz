@@ -336,6 +336,7 @@ defaults write NSGlobalDomain com.apple.mouse.scaling 2
 
 echo ""
 echo "Use scroll gesture with the Ctrl (^) modifier key to zoom"
+# ugh, seems broken for now
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 # defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # echo "Follow the keyboard focus while zoomed in"
@@ -525,6 +526,11 @@ defaults write com.apple.dock minimize-to-application -bool $defaults_minimizeto
 # defaults write com.apple.dock autohide -bool true
 # defaults write com.apple.dock autohide-delay -float 0
 # defaults write com.apple.dock autohide-time-modifier -float 0
+
+echo ""
+defaults_minimizetoapplication=${defaults_showrecentsindock-"false"}
+echo "Dock: show recent applications? $defaults_showrecentsindock"
+defaults write com.apple.dock show-recents -bool $defaults_showrecentsindock
 
 echo ""
 echo "Mission Control: Speeding up animations"
