@@ -19,12 +19,13 @@ dotz_install_if_missing dockutil
 dock_icons=(
   /Applications/Firefox.app
   /Applications/Google\ Chrome.app
-  /Applications/iTunes.app
-  /Applications/Adobe\ Photoshop\ CS6/Adobe\ Photoshop\ CS6.app
-  /Applications/Microsoft\ Office\ 2011/Microsoft\ Word.app
-  /Applications/Microsoft\ Office\ 2011/Microsoft\ Excel.app
-  /Applications/Linphone.app
-  /Applications/Utilities/Terminal.app
+#   /Applications/iTunes.app
+#   /Applications/Adobe\ Photoshop\ CS6/Adobe\ Photoshop\ CS6.app
+#   /Applications/Microsoft\ Office\ 2011/Microsoft\ Word.app
+#   /Applications/Microsoft\ Office\ 2011/Microsoft\ Excel.app
+#   /Applications/Linphone.app
+  /Applications/Preview.app
+  /Applications/iTerm.app
   /Applications/Utilities/Activity\ Monitor.app
   /Applications/System\ Preferences.app
 )
