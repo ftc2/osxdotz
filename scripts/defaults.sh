@@ -237,8 +237,8 @@ echo "***** Power Management *****"
 echo ""
 ## when asleep: specifies the delay, in seconds, before writing the hibernation image to 
 ##   disk and powering off memory for Standby.
-## 36000 s = 10 hr
-defaults_pmsetstandbydelay=${defaults_pmsetstandbydelay-"36000"}
+## 43200 s = 12 hr
+defaults_pmsetstandbydelay=${defaults_pmsetstandbydelay-"43200"}
 echo "Speeding up waking from sleep: only go from sleep to hibernate after $defaults_pmsetstandbydelay s"
 echo "  (by default, OS X switches from 'sleep' to 'hibernate' after about an hour)"
 # http://www.cultofmac.com/221392/quick-hack-speeds-up-retina-macbooks-wake-from-sleep-os-x-tips/
@@ -371,9 +371,11 @@ echo "Disabling auto-correct (System Preferences → Keyboard → Text)"
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 echo ""
-echo "Disabling annoying 'smart' quotes, dashes, and ellipses"
+echo "Disabling annoying 'smart' quotes, dashes, and ellipses, etc"
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 # echo ""
 # echo "Increasing sound quality for Bluetooth headphones/headsets"
@@ -444,7 +446,7 @@ defaults write com.apple.finder FXDefaultSearchScope -string "$defaults_finderde
 echo ""
 defaults_finderviewmode=${defaults_finderviewmode-"Nlsv"}
 echo "Setting default Finder view mode to: $defaults_finderviewmode"
-echo "(Nlsv – List View, icnv – Icon View, clmv – Column View, Flwv - Flow View)"
+echo "(Nlsv – List View, icnv – Icon View, clmv – Column View, glyv - Gallery View)"
 defaults write com.apple.finder FXPreferredViewStyle -string "$defaults_finderviewmode"
 
 echo ""
@@ -541,6 +543,7 @@ echo ""
 ## 10: Put display to sleep
 ## 11: Launchpad
 ## 12: Notification Center
+## 13: Lock Screen
 defaults_hotcornerBottomLeft=${defaults_hotcornerBottomLeft-"2"}
 defaults_hotcornerBottomRight=${defaults_hotcornerBottomRight-"1"}
 defaults_hotcornerTopLeft=${defaults_hotcornerTopLeft-"4"}
@@ -550,7 +553,7 @@ echo "  bottom left: $defaults_hotcornerBottomLeft"
 echo "  bottom right: $defaults_hotcornerBottomRight"
 echo "  top left: $defaults_hotcornerTopLeft"
 echo "  top right: $defaults_hotcornerTopRight"
-echo "  (0,1=null, 2=Mission Control, 3=Show application windows, 4=Desktop, 5=Start screen saver, 6=Disable screen saver, 7=Dashboard, 10=Put display to sleep, 11=Launchpad, 12=Notification Center)"
+echo "  (0,1=null, 2=Mission Control, 3=Show application windows, 4=Desktop, 5=Start screen saver, 6=Disable screen saver, 7=Dashboard, 10=Put display to sleep, 11=Launchpad, 12=Notification Center, 13=Lock Screen)"
 defaults write com.apple.dock wvous-bl-corner -int $defaults_hotcornerBottomLeft
 defaults write com.apple.dock wvous-br-corner -int $defaults_hotcornerBottomRight
 defaults write com.apple.dock wvous-tl-corner -int $defaults_hotcornerTopLeft
