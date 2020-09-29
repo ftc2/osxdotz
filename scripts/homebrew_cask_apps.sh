@@ -25,6 +25,7 @@ cask_apps=(
   iterm2
   sloth
   coconutbattery
+  lulu
   # filezilla     ## removed due to malware/adware
   # compression/crypto
   the-unarchiver
@@ -33,8 +34,10 @@ cask_apps=(
   # multimedia
   vlc
   iina
-  soda-player
+  deluge
   qbittorrent
+  webtorrent
+  soda-player
   handbrake
   # chat
   slack
