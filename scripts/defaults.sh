@@ -145,6 +145,15 @@ echo "Disabling system-wide Resume (i.e. saved application states that get resto
 echo "  (System Preferences → General → Close windows when quitting an app)"
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
+echo ""
+echo "Disabling system-wide Resume on reboot (ungraceful or otherwise)"
+## LoginHook might be gone in macOS 10.15
+loginhook_path=/usr/local/bin/LoginHook.sh
+sudo cp "$basedir/resources/never_relaunch_at_login.sh" $loginhook_path
+sudo chmod 755 $loginhook_path
+## https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CustomLogin.html
+sudo defaults write com.apple.loginwindow LoginHook $loginhook_path
+
 
 ###############################################################################
 ## Menu Bar
