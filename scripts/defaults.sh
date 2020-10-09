@@ -537,7 +537,7 @@ defaults write com.apple.dock minimize-to-application -bool $defaults_minimizeto
 # defaults write com.apple.dock autohide-time-modifier -float 0
 
 echo ""
-defaults_minimizetoapplication=${defaults_showrecentsindock-"false"}
+defaults_showrecentsindock=${defaults_showrecentsindock-"false"}
 echo "Dock: show recent applications? $defaults_showrecentsindock"
 defaults write com.apple.dock show-recents -bool $defaults_showrecentsindock
 
