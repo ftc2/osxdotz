@@ -88,19 +88,19 @@ dotz_homebrew_install_update
 ## Install apps
 if [ ! -z ${cask_apps+x} ]; then
   echo "Installing cask apps..."
-  brew cask install --appdir="$appdir" ${cask_apps[@]}
+  brew install --cask --appdir="$appdir" ${cask_apps[@]}
 fi
 
 ## Install qlplugins
 if [ ! -z ${cask_qlplugins+x} ]; then
   echo "Installing Quick Look plugins..."
-  brew cask install ${cask_qlplugins[@]}
+  brew install --cask ${cask_qlplugins[@]}
 fi
 
 ## Install fonts
 if [ ! -z ${cask_fonts+x} ]; then
   echo "Installing cask fonts..."
-  brew cask install ${cask_fonts[@]}
+  brew install --cask ${cask_fonts[@]}
 fi
 
 brew cleanup
