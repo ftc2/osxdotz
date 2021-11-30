@@ -34,10 +34,10 @@ cask_apps=(
   # multimedia
   vlc
   iina
-  deluge
+  # deluge
   qbittorrent
-  webtorrent
-  soda-player
+  # webtorrent
+  # soda-player
   handbrake
   # chat
   slack

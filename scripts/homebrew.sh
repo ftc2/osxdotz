@@ -33,7 +33,8 @@ brew_packages=(
   imgur-screenshot
   qpdf
   ffmpeg
-  youtube-dl
+  # youtube-dl
+  yt-dlp
   # misc/system
   md5deep
   watch
